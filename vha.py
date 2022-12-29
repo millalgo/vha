@@ -6,6 +6,7 @@ import getpass
 import urllib.request
 import zipfile
 import pwd
+import shutil
 
 
 def build(domain, database, wordpress):
@@ -88,7 +89,7 @@ def build(domain, database, wordpress):
             zip_ref.extractall("/var/www/html/")
         if os.path.exists(contentPath):
             print(f'A previous verion of this domain exists. Renaming it to {domain}_old')
-            os.rename(contentPath, contentPath+'_old')
+            shutil.move(contentPath, contentPath+'_old')
         os.rename("/var/www/html/wordpress", contentPath)
         os.remove("/var/www/html/latest.zip")
         
