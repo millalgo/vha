@@ -1,0 +1,35 @@
+# THIS IS A MODIFIED DEFAULT FILE
+# DO NOT USE IN PRODUCTION
+
+server {
+
+         server_name web1.website.com www.website.com;
+
+         location / {
+         try_files $uri $uri/ /index.php?$args;
+}
+
+         root /var/www/html/web1.website.com;
+
+        # Add index.php to the list if you are using PHP
+        index index.html index.htm index.nginx-debian.html index.php;
+
+
+        # pass PHP scripts to FastCGI server
+        #
+        location ~ \.php$ {
+                include snippets/fastcgi-php.conf;
+        #
+        #       # With php-fpm (or other unix sockets):
+                fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+        #       # With php-cgi (or other tcp sockets):
+        #       fastcgi_pass 127.0.0.1:9000;
+        #}
+
+        # deny access to .htaccess files, if Apache's document root
+        # concurs with nginx's one
+        #
+        #location ~ /\.ht {
+        #       deny all;
+        }
+}
